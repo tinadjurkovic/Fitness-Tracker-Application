@@ -1,4 +1,3 @@
-// tracker.component.ts
 import { Component } from '@angular/core';
 import { TrackerService } from './tracker.service';
 
