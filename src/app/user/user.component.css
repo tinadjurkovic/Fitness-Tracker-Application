@@ -1,0 +1,57 @@
+.user-form {
+  position: fixed;
+  max-width: 800px;
+  margin: 0% 18%;
+  padding: 14px;
+  border: 2px solid #103b24;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(#10754ebb, hwb(113 58% 26%));
+  color: white; 
+  background-attachment: fixed;
+}
+
+h2 {
+  font-size: 40px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 25px;
+}
+
+label {
+  display: block;
+  margin-bottom: 12px;
+  color: white; 
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 33px;
+  box-sizing: border-box;
+  color: rgb(181, 90, 132);
+}
+
+.error-message {
+  color: red;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: #ffffffbb; 
+  color: rgb(181, 90, 132);
+  padding: 15px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block; 
+  margin: auto;
+}
+
+button:hover {
+  background-color: #158b5ebb; 
+}

@@ -1,0 +1,12 @@
+<div *ngIf="!isActiveOption" class="menu-options">
+  
+  <h2>CHOOSE YOUR GOAL</h2>
+  <ul>
+    <li><a routerLink="/gain-weight" (click)="setActiveOption('gain-weight')">GAIN WEIGHT</a></li>
+    <li><a routerLink="/lose-weight" (click)="setActiveOption('lose-weight')">LOSE WEIGHT</a></li>
+    <li><a routerLink="/strengthen-muscles" (click)="setActiveOption('strengthen-muscles')">STRENGTHEN MUSCLES</a></li>
+    <li><a routerLink="/stay-active" (click)="setActiveOption('stay-active')">STAY ACTIVE</a></li>
+  </ul>
+</div>
+
+<router-outlet></router-outlet>

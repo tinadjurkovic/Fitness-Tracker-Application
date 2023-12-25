@@ -1,0 +1,53 @@
+{
+    "monday": {
+      "breakfast": "Greek yogurt with berries",
+      "snack1": "Apple slices with almond butter",
+      "lunch": "Salad with grilled shrimp and avocado",
+      "snack2": "Carrot and cucumber sticks with hummus",
+      "dinner": "Baked chicken with broccoli and quinoa",
+      "snack3": "Mixed berry smoothie with spinach"
+    },
+      "tuesday": {
+        "breakfast": "Whole grain toast with avocado",
+        "snack1": "Mixed berry smoothie with spinach",
+        "lunch": "Quinoa salad with grilled chicken and vegetables",
+        "snack2": "Greek yogurt with sliced cucumber",
+        "dinner": "Baked fish with steamed broccoli and brown rice",
+        "snack3": "Vegetable sticks with hummus"
+      },
+        "wednesday": {
+          "breakfast": "Scrambled eggs with spinach and tomatoes",
+          "snack1": "Cottage cheese with pineapple chunks",
+          "lunch": "Grilled turkey breast with quinoa and mixed greens",
+          "snack2": "Cherry tomatoes with mozzarella cheese",
+          "dinner": "Stir-fried tofu with broccoli and brown rice",
+          "snack3": "Berries and nut mix"
+        },
+          "thursday": {
+            "breakfast": "Smoothie with banana, spinach, and almond milk",
+            "snack1": "Cucumber slices with hummus",
+            "lunch": "Grilled salmon with quinoa and steamed asparagus",
+            "snack2": "Greek yogurt with chia seeds",
+            "dinner": "Vegetable stir-fry with tofu and brown rice",
+            "snack3": "Mixed fruit salad"
+          },
+            "friday": {
+              "breakfast": "Avocado toast with poached eggs",
+              "snack1": "Sliced pear with cottage cheese",
+              "lunch": "Turkey and vegetable wrap with whole grain tortilla",
+              "snack2": "Carrot sticks with tzatziki dip",
+              "dinner": "Baked cod with quinoa and roasted Brussels sprouts",
+              "snack3": "Green tea with a handful of almonds"
+            },
+              "saturday": {
+                "breakfast": "Smoothie with kale, banana, and almond milk",
+                "snack1": "Greek yogurt with sliced strawberries",
+                "lunch": "Grilled chicken salad with mixed greens and vinaigrette",
+                "snack2": "Celery sticks with peanut butter",
+                "dinner": "Salmon fillet with quinoa and steamed asparagus",
+                "snack3": "Herbal tea with a small portion of dark chocolate"
+              },
+    "sunday": {
+      "cheatDay": true
+    }
+  }

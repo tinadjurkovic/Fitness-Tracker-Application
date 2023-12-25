@@ -1,0 +1,215 @@
+{
+    "monday": {
+      "muscleGroup": "Chest",
+        "exercises": [
+          {
+            "name": "Bench Press",
+            "reps": 12,
+            "sets": 4,
+            "rest": "60s"
+          },
+          {
+            "name": "Incline Dumbbell Press",
+            "reps": 10,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Chest Fly",
+            "reps": 15,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Push-ups",
+            "reps": "to failure",
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Dumbbell Pullover",
+            "reps": 12,
+            "sets": 3,
+            "rest": "45s"
+          }
+        ]
+      },
+      "tuesday": {
+        "muscleGroup": "Back",
+        "exercises": [
+          {
+            "name": "Deadlift",
+            "reps": 8,
+            "sets": 5,
+            "rest": "75s"
+          },
+          {
+            "name": "Pull-ups",
+            "reps": 10,
+            "sets": 4,
+            "rest": "60s"
+          },
+          {
+            "name": "Bent Over Rows",
+            "reps": 12,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Lat Pulldowns",
+            "reps": 12,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Face Pulls",
+            "reps": 15,
+            "sets": 3,
+            "rest": "45s"
+          }
+        ]
+      },
+      "wednesday": {
+        "muscleGroup": "Legs",
+        "exercises": [
+          {
+            "name": "Squats",
+            "reps": 12,
+            "sets": 4,
+            "rest": "60s"
+          },
+          {
+            "name": "Lunges",
+            "reps": 10,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Leg Press",
+            "reps": 15,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Leg Extensions",
+            "reps": 12,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Calf Raises",
+            "reps": 15,
+            "sets": 3,
+            "rest": "45s"
+          }
+        ]
+      },
+      "thursday": {
+        "muscleGroup": "Shoulders",
+        "exercises": [
+          {
+            "name": "Overhead Press",
+            "reps": 10,
+            "sets": 4,
+            "rest": "60s"
+          },
+          {
+            "name": "Lateral Raises",
+            "reps": 12,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Front Raises",
+            "reps": 15,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Seated Dumbbell Press",
+            "reps": 10,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Reverse Flyes",
+            "reps": 15,
+            "sets": 3,
+            "rest": "45s"
+          }
+        ]
+      },
+      "friday": {
+        "muscleGroup": "Arms",
+        "exercises": [
+          {
+            "name": "Bicep Curls",
+            "reps": 12,
+            "sets": 4,
+            "rest": "60s"
+          },
+          {
+            "name": "Tricep Dips",
+            "reps": 10,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Hammer Curls",
+            "reps": 15,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Skull Crushers",
+            "reps": 12,
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Preacher Curls",
+            "reps": 12,
+            "sets": 3,
+            "rest": "45s"
+          }
+        ]
+      },
+      "saturday": {
+        "muscleGroup": "Core",
+        "exercises": [
+          {
+            "name": "Planks",
+            "reps": "60s",
+            "sets": 3,
+            "rest": "45s"
+          },
+          {
+            "name": "Russian Twists",
+            "reps": 20,
+            "sets": 3,
+            "rest": "30s"
+          },
+          {
+            "name": "Leg Raises",
+            "reps": 15,
+            "sets": 3,
+            "rest": "30s"
+          },
+          {
+            "name": "Mountain Climbers",
+            "reps": 20,
+            "sets": 3,
+            "rest": "30s"
+          },
+          {
+            "name": "Hanging Leg Raises",
+            "reps": 12,
+            "sets": 3,
+            "rest": "45s"
+          }
+        ]
+      },
+      "sunday": {
+        "restDay": true
+      }
+    }

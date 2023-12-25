@@ -1,0 +1,67 @@
+div {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    background-color:beige;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #10754ebb;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    color: #10754ebb;
+  }
+  
+  th {
+    background-color: #10754ebb;
+    color:antiquewhite;
+  }
+  
+  label {
+    display: block;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 5px;
+    color: bisque;
+  }
+
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px; 
+    transition: background-color 0.3s, color 0.3s;
+    color: #10754ebb;
+    ;
+  }
+  
+  .calculate-button {
+    background-color: #10754ebb; /* Green */
+    color: white;
+  
+  }
+  
+  .calculate-button:hover {
+    background-color: #10754ebb;
+  }
+    

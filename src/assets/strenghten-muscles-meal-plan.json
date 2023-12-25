@@ -1,0 +1,60 @@
+{
+  "day1": {
+    "breakfast": "Oatmeal with banana and almonds",
+    "snack1": "Greek yogurt with honey and walnuts",
+    "lunch": "Grilled chicken with quinoa and roasted vegetables",
+    "snack2": "Whole grain toast with avocado",
+    "dinner": "Salmon with sweet potato and asparagus",
+    "snack3": "Protein shake with milk and peanut butter"
+  },
+
+  "day2": {
+    "breakfast": "Scrambled eggs with spinach and whole grain toast",
+    "snack1": "Mixed nuts and dried fruits",
+    "lunch": "Beef stir-fry with brown rice and broccoli",
+    "snack2": "Cottage cheese with pineapple chunks",
+    "dinner": "Pasta with creamy Alfredo sauce and grilled chicken",
+    "snack3": "Banana smoothie with protein powder"
+  },
+      
+    "day3": {
+    "breakfast": "Pancakes with maple syrup and berries",
+    "snack1": "Avocado toast with poached eggs",
+    "lunch": "Tuna salad with quinoa and mixed greens",
+    "snack2": "Trail mix with chocolate and dried fruits",
+    "dinner": "Beef and vegetable curry with basmati rice",
+    "snack3": "Mango smoothie with protein powder"
+  },
+
+    "day4": {
+    "breakfast": "Whole grain waffles with strawberries and whipped cream",
+    "snack1": "Cottage cheese with pineapple chunks",
+    "lunch": "Turkey and avocado wrap with sweet potato fries",
+    "snack2": "Chocolate banana muffins with almonds",
+    "dinner": "Shrimp stir-fry with brown rice and vegetables",
+              "snack3": "Peanut butter and banana sandwich"
+  },
+          
+  "day5": {
+    "breakfast": "Blueberry pancakes with maple syrup",
+    "snack1": "Mixed berries smoothie with protein powder",
+    "lunch": "Beef and vegetable kebabs with quinoa",
+    "snack2": "Apple slices with caramel and nuts",
+    "dinner": "Chicken Alfredo pasta with broccoli",
+    "snack3": "Homemade trail mix with dried fruits and nuts"
+  },
+            
+  "day6": {
+   "breakfast": "Peanut butter and banana toast",
+   "snack1": "Cottage cheese with pineapple chunks",
+   "lunch": "Turkey and avocado wrap with sweet potato fries",
+   "snack2": "Chocolate protein smoothie",
+   "dinner": "Baked ziti with meat sauce and garlic bread",
+   "snack3": "Mixed nuts and dried fruits"
+  },
+              
+  "day7": {
+    "cheatDay": true
+  }
+}
+  

@@ -1,0 +1,37 @@
+<div *ngIf="!showMenu" class="user-form">
+  <h2>USER INFORMATION</h2>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="user.name" required>
+    <div *ngIf="userForm.controls['name']?.invalid && (userForm.controls['name']?.dirty || userForm.controls['name']?.touched)" class="error-message">
+      <p>Please enter a valid name.</p>
+    </div>
+
+    <label for="surname">Surname:</label>
+    <input type="text" id="surname" name="surname" [(ngModel)]="user.surname" required>
+    <div *ngIf="userForm.controls['surname']?.invalid && (userForm.controls['surname']?.dirty || userForm.controls['surname']?.touched)" class="error-message">
+      <p>Please enter a valid surname.</p>
+    </div>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" [(ngModel)]="user.age" required>
+    <div *ngIf="(userForm.controls['age']?.invalid && userForm.controls['age']?.touched) || userForm.submitted" class="error-message">
+      <p>Please enter a valid age.</p>
+    </div>
+
+    <label for="weight">Weight:</label>
+    <input type="number" id="weight" name="weight" [(ngModel)]="user.weight" required>
+    <div *ngIf="(userForm.controls['weight']?.invalid && userForm.controls['weight']?.touched) || userForm.submitted" class="error-message">
+      <p>Please enter your weight.</p>
+    </div>
+
+    <label for="height">Height:</label>
+    <input type="number" id="height" name="height" [(ngModel)]="user.height" required>
+    <div *ngIf="(userForm.controls['height']?.invalid && userForm.controls['height']?.touched) || userForm.submitted" class="error-message">
+      <p>Please enter your height.</p>
+    </div>
+
+    <button type="submit" [disabled]="userForm.invalid">Submit</button>
+  </form>
+</div>
+<app-menu *ngIf="showMenu"></app-menu>
