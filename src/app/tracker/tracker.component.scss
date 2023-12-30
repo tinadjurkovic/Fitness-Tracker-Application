@@ -1,15 +1,16 @@
 div {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
+    max-width: 790px;
+    margin: 50;
+    padding: 25px;
     border: 2px solid #ccc;
     background-color:beige;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  
   }
   
   h2 {
-    font-size: 24px;
+    font-size: 30px;
     margin-bottom: 20px;
     text-align: center;
     color: #10754ebb;
@@ -64,4 +65,24 @@ div {
   .calculate-button:hover {
     background-color: #10754ebb;
   }
-    
+  
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.modal.active {
+  display: block;
+  margin: 150px;
+}
+
+.modal .modal-content {
+  text-align: center;
+}

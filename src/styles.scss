@@ -1,8 +1,10 @@
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 body {
   background-image: url('/assets/main.jpg');
   background-size: cover; 
   background-repeat: no-repeat;
   background-position: center;
-  position: absolute;
+  position: relative;
   background-attachment:fixed; 
 }

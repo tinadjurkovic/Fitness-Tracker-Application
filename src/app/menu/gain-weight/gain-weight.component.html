@@ -1,0 +1,62 @@
+<div>
+  <button class="btn btn-primary" (click)="toggleUserInfo()">Show User Info</button>
+
+  <div class="user-info-modal" [class.active]="modalActive">
+    <div class="modal-content">
+      <h3>{{ user.name }} {{ user.surname }}</h3>
+      <p>Age: {{ user.age }}</p>
+      <p>Weight: {{ user.weight }}</p>
+      <p>Height: {{ user.height }}</p>
+      <button class="btn btn-secondary" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+<!-- User Information Modal -->
+<div class="modal" *ngIf="modalActive">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>{{ modalTitle }}</h3>
+      <span class="close" (click)="closeModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <ul>
+        <li *ngFor="let item of modalItems">{{ item }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="plan-section">
+  <h2>Gain Weight Plan</h2>
+
+  <div class="plan-box" (click)="toggleExercisePlan()" [class.expanded]="showExercisePlan">
+    <h3>Exercise Plan</h3>
+    <div *ngIf="showExercisePlan">
+      <div *ngFor="let day of getObjectKeys(exercisePlan)">
+        <div>{{ day }}</div>
+        <ul>
+          <li *ngFor="let exercise of exercisePlan[day]?.exercises">
+            {{ exercise.name }} - {{ exercise.sets }} sets, {{ exercise.reps }} reps
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="plan-box" (click)="toggleMealPlan()" [class.expanded]="showMealPlan">
+    <h3>Meal Plan</h3>
+    <div *ngIf="showMealPlan">
+      <div *ngFor="let day of getObjectKeys(mealPlan)">
+        <div>{{ day }}</div>
+        <ul>
+          <li *ngFor="let meal of mealPlan[day] | keyvalue">
+            {{ meal.key }} - {{ meal.value }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <button class="btn btn-primary" (click)="goToTracker()">Track My Progress</button>
+</div>

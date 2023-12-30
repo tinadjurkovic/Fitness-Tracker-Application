@@ -1,54 +1,66 @@
 <div>
-    <h2>Meal and Exercise Tracker</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Day</th>
-          <th *ngFor="let meal of meals">{{ meal }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let day of days">
-          <td>{{ day }}</td>
-          <td *ngFor="let meal of meals">
-            <label>
-              <input type="checkbox" (change)="updateProgress(day, meal, $event)" />
-              {{ meal }}
-            </label>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="calculate-button" (click)="calculateProgress()">Calculate Meal Progress</button>
-    <div *ngIf="progress !== null">
-      <p>Meal Progress: {{ progress.toFixed(2) }}%</p>
+  <h2>Meal and Exercise Tracker</h2>
+  <p>Selected Menu Option: {{ selectedMenuOption }}</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th *ngFor="let meal of meals">{{ meal }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let day of days">
+        <td>{{ day }}</td>
+        <td *ngFor="let meal of meals">
+          <label>
+            <input type="checkbox" (change)="updateProgress(day, meal, $event)" />
+            {{ meal }}
+          </label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="progress !== null">
+    <p>Meal Progress: {{ progress.toFixed(2) }}%</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th *ngFor="let exercise of exercises">{{ exercise }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let day of days">
+        <td>{{ day }}</td>
+        <td *ngFor="let exercise of exercises">
+          <label>
+            <input type="checkbox" (change)="updateProgress(day, exercise, $event)" />
+            {{ exercise }}
+          </label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="exerciseProgress !== null">
+    <p>User Exercise Progress: {{ exerciseProgress.toFixed(2) }}%</p>
+  </div>
+
+  <div *ngIf="overallProgress !== null">
+    <p>User Overall Progress: {{ overallProgress.toFixed(2) }}%</p>
+  </div>
+
+  <button (click)="toggleUserInfo()">Show User Info</button>
+
+  <div *ngIf="modalActive" class="user-info-modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h3>{{ modalTitle }}</h3>
+      <ul>
+        <li *ngFor="let item of modalItems">{{ item }}</li>
+      </ul>
     </div>
-      <table>
-      <thead>
-        <tr>
-          <th>Day</th>
-          <th *ngFor="let exercise of exercises">{{ exercise }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let day of days">
-          <td>{{ day }}</td>
-          <td *ngFor="let exercise of exercises">
-            <label>
-              <input type="checkbox" (change)="updateProgress(day, exercise, $event)" />
-              {{ exercise }}
-            </label>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="calculate-button" (click)="calculateExerciseProgress()">Calculate Exercise Progress</button>
-    <div *ngIf="exerciseProgress !== null">
-      <p>User Exercise Progress: {{ exerciseProgress.toFixed(2) }}%</p>
-    </div>
-    <button class="calculate-button" (click)="calculateOverallProgress()">Calculate Overall Progress</button>
-    <div *ngIf="overallProgress !== null">
-  <p>User Overall Progress: {{ overallProgress.toFixed(2) }}%</p>
+  </div>
 </div>
-</div>
-  

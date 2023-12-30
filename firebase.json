@@ -1,0 +1,12 @@
+{
+    "hosting": {
+      "public": "dist/fitness-tracker-application",
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  }
+  

@@ -1,0 +1,62 @@
+.user-form {
+  position:fixed;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  width: 100%;
+  padding: 3px;
+  background: transparent;
+  text-align: center;
+
+  h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: white;
+    padding: 10px;
+  }
+
+  h3 {
+    font-size: 22px;
+    color: white;
+  }
+
+  label {
+    display: block;
+    margin: 12px 0 6px;
+    color: white;
+    text-align: left;
+    font-size: 20px;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #555;
+    text-size-adjust: 25px;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 18px;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+
+  button {
+    background-color: #269d50;
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor:grab;
+
+    &:hover {
+      background-color: #095c3c;
+    }
+  }
+}

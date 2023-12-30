@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ExercisePlanService {
-  private gainWeightExercisePlanUrl = './assets/exercise-plan.json';  // Adjust the path accordingly
+  private gainWeightExercisePlanUrl = './assets/exercise-plan.json';  
 
   constructor(private http: HttpClient) {}
 

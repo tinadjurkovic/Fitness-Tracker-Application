@@ -1,21 +1,36 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StayActiveMealPlan, StayActiveMealPlanDay } from './stay-active.model';
+import { StayActiveMealPlanDay } from './stay-active.model';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { TrackerService } from '../../services/tracker.service';
 
 @Component({
   selector: 'app-stay-active',
   templateUrl: './stay-active.component.html',
-  styleUrls: ['./stay-active.component.css'],
+  styleUrls: ['./stay-active.component.scss'],
 })
 export class StayActiveComponent implements OnInit {
+  user: any;
   exercisePlan: any = {};
   showExercisePlan: boolean = false;
   showMealPlan: boolean = false;
-  mealPlan: { [key: string]: StayActiveMealPlan } = {};
+  mealPlan: { [key: string]: StayActiveMealPlanDay } = {};
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  modalTitle: string = '';
+  modalItems: string[] = [];
+  modalActive: boolean = false;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService,
+    private trackerService: TrackerService 
+  ) {}
 
   ngOnInit(): void {
+    this.user = this.userService.getUser();
+    console.log('User in Component:', this.user);
+
     fetch('assets/exercise-plan.json')
       .then((response) => response.json())
       .then((data) => {
@@ -26,7 +41,7 @@ export class StayActiveComponent implements OnInit {
         console.error('Error fetching exercise plan:', error);
       });
 
-      fetch('assets/stay-active-meal-plan.json')
+    fetch('assets/stay-active-meal-plan.json')
       .then((response) => response.json())
       .then((data) => {
         this.mealPlan = data;
@@ -51,7 +66,29 @@ export class StayActiveComponent implements OnInit {
     return Object.keys(obj || {});
   }
 
+  toggleUserInfo(): void {
+    this.openModal('User Information', [
+      `Name: ${this.user.name} ${this.user.surname}`,
+      `Age: ${this.user.age}`,
+      `Weight: ${this.user.weight}`,
+      `Height: ${this.user.height}`,
+    ]);
+  }
   goToTracker(): void {
+    const selectedMenuOption = 'Stay Active';
+    this.trackerService.setInitialMenuOption(selectedMenuOption);
     this.router.navigate(['/tracker']);
   }
+
+  openModal(title: string, items: string[]): void {
+    this.modalTitle = title;
+    this.modalItems = items;
+    this.modalActive = true;
+  }
+
+  closeModal(): void {
+    this.modalActive = false;
+  }
 }
+
+

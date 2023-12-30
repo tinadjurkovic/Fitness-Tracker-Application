@@ -1,0 +1,113 @@
+.user-info {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+
+  p {
+    margin: 5px 0;
+  }
+
+}
+
+.plan-section {
+  max-width: 500px;
+  margin: 100px 100px;
+  h2 {
+    color: #19452d;
+    text-align: center; 
+  }
+}
+
+.plan-box {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: #316e4d;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  h3 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: #316e4d;
+  }
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  div {
+    display: none;
+  }
+
+  &.expanded div {
+    display: block;
+  }
+}
+
+.btn-primary {
+  background-color: #428561;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.125rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #316e4d;
+  }
+}
+
+
+.user-info-modal {
+  position: fixed;
+  top: 23%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.user-info-modal.active {
+  display: block;
+  margin: 150px;
+}
+
+.user-info-modal .modal-content {
+  text-align: center;
+  color: #316e4d;
+
+  h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-color: #316e4d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #19452d;
+    }
+  }
+}

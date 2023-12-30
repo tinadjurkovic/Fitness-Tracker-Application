@@ -1,14 +1,10 @@
 .menu-options {
   position: center;
-  max-width: 800px; /* Increase the max-width */
-  margin: auto; /* Adjust the margin to move it more to the right */
-  padding: 20px; /* Decrease the padding */
-  border: 2px solid #1d3c45;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(#10754ebb, hwb(113 58% 26%));
+  width: 500px; 
+  margin: 0px 130px; 
+  padding: 20px;
+  background: transparent;
   color: white;
-  background-attachment: fixed;
 }
 
 .menu-options h2 {
@@ -16,6 +12,7 @@
   font-size: 40px;
   margin-bottom: 15px;
   color: white;
+  padding: 15px;
 }
 
 .menu-options ul {
