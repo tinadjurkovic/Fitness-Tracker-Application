@@ -1,16 +1,14 @@
 <div>
   <button class="btn btn-primary" (click)="toggleUserInfo()">Show User Info</button>
 
-  <div class="user-info-modal" [class.active]="modalActive">
-    <div class="modal-content">
-      <h3>{{ user.name }} {{ user.surname }}</h3>
-      <p>Age: {{ user.age }}</p>
-      <p>Weight: {{ user.weight }}</p>
-      <p>Height: {{ user.height }}</p>
-      <button class="btn btn-secondary" (click)="closeModal()">Close</button>
-    </div>
-  </div>
+  <app-modal
+    [title]="modalTitle"
+    [items]="modalItems"
+    [active]="modalActive"
+    (closeModal)="closeModal()"
+  ></app-modal>
 </div>
+
 <div class="plan-section">
   <h2>Gain Weight Plan</h2>
 

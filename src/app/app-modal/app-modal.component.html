@@ -1,0 +1,9 @@
+<div class="user-info-modal" [class.active]="active">
+    <div class="modal-content">
+        <h3>{{ user.name }} {{ user.surname }}</h3>
+          <p>Age: {{ user.age }}</p>
+          <p>Weight: {{ user.weight }}</p>
+          <p>Height: {{ user.height }}</p>
+        <button class="btn btn-secondary" (click)="onCloseModal()">Close</button>
+    </div>
+</div>

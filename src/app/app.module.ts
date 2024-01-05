@@ -16,6 +16,7 @@ import { StrengthenMusclesComponent } from './menu/strengthen-muscles/strengthen
 import { StayActiveComponent } from './menu/stay-active/stay-active.component';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AppModalComponent } from './app-modal/app-modal.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     StrengthenMusclesComponent,
     StayActiveComponent,
     TrackerComponent,
+    AppModalComponent,
   ],
   imports: [
     BrowserModule,
