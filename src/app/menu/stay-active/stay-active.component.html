@@ -34,11 +34,12 @@
       <div *ngFor="let day of getObjectKeys(exercisePlan)">
         <div>{{ day }}</div>
         <ul>
-          <li *ngFor="let exercise of exercisePlan[day]?.exercises">
+          <li *ngFor="let exercise of getExercisesForDay(day)">
             {{ exercise.name }} - {{ exercise.sets }} sets, {{ exercise.reps }} reps
           </li>
         </ul>
       </div>
+    
     </div>
   </div>
 
@@ -55,6 +56,7 @@
       </div>
     </div>
   </div>
+
 
   <button class="btn btn-primary" (click)="goToTracker()">Track My Progress</button>
 </div>

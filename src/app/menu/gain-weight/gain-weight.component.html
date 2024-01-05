@@ -11,21 +11,6 @@
     </div>
   </div>
 </div>
-<!-- User Information Modal -->
-<div class="modal" *ngIf="modalActive">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3>{{ modalTitle }}</h3>
-      <span class="close" (click)="closeModal()">&times;</span>
-    </div>
-    <div class="modal-body">
-      <ul>
-        <li *ngFor="let item of modalItems">{{ item }}</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
 <div class="plan-section">
   <h2>Gain Weight Plan</h2>
 
@@ -35,11 +20,12 @@
       <div *ngFor="let day of getObjectKeys(exercisePlan)">
         <div>{{ day }}</div>
         <ul>
-          <li *ngFor="let exercise of exercisePlan[day]?.exercises">
+          <li *ngFor="let exercise of getExercisesForDay(day)">
             {{ exercise.name }} - {{ exercise.sets }} sets, {{ exercise.reps }} reps
           </li>
         </ul>
       </div>
+    
     </div>
   </div>
 

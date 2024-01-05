@@ -15,7 +15,7 @@ import { LoseWeightComponent } from './menu/lose-weight/lose-weight.component';
 import { StrengthenMusclesComponent } from './menu/strengthen-muscles/strengthen-muscles.component';
 import { StayActiveComponent } from './menu/stay-active/stay-active.component';
 import { UserService } from './services/user.service';
-import { ModalComponent } from './modal/modal.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -28,7 +28,6 @@ import { ModalComponent } from './modal/modal.component';
     StrengthenMusclesComponent,
     StayActiveComponent,
     TrackerComponent,
-    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +35,7 @@ import { ModalComponent } from './modal/modal.component';
     ReactiveFormsModule,
     AppRoutingModule,
     RouterModule, 
+    HttpClientModule
   ],
   providers: [TrackerService, UserService],
   bootstrap: [AppComponent],

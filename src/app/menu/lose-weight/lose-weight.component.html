@@ -11,7 +11,6 @@
     </div>
   </div>
 </div>
-
 <div class="modal" *ngIf="modalActive">
   <div class="modal-content">
     <div class="modal-header">
@@ -26,10 +25,8 @@
   </div>
 </div>
 
-
 <div class="plan-section">
   <h2>Lose Weight Plan</h2>
-
 
   <div class="plan-box" (click)="toggleExercisePlan()" [class.expanded]="showExercisePlan">
     <h3>Exercise Plan</h3>
@@ -37,14 +34,14 @@
       <div *ngFor="let day of getObjectKeys(exercisePlan)">
         <div>{{ day }}</div>
         <ul>
-          <li *ngFor="let exercise of exercisePlan[day]?.exercises">
+          <li *ngFor="let exercise of getExercisesForDay(day)">
             {{ exercise.name }} - {{ exercise.sets }} sets, {{ exercise.reps }} reps
           </li>
         </ul>
       </div>
+    
     </div>
   </div>
-
 
   <div class="plan-box" (click)="toggleMealPlan()" [class.expanded]="showMealPlan">
     <h3>Meal Plan</h3>
@@ -60,6 +57,6 @@
     </div>
   </div>
 
- 
+
   <button class="btn btn-primary" (click)="goToTracker()">Track My Progress</button>
 </div>

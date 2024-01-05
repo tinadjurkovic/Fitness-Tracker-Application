@@ -8,6 +8,7 @@ export class TrackerService {
   private selectedMeals: { [key: string]: { [key: string]: boolean } } = {};
   private selectedExercises: { [key: string]: string[] } = {};
   private selectedMenuOptionSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private exercisesData: { [key: string]: { muscleGroup: string, exercises: any[] } } = {};
 
   updateProgress(day: string, selectedMeals: { [key: string]: boolean }, selectedExercises: string[]): void {
     this.selectedMeals[day] = selectedMeals;
@@ -20,6 +21,14 @@ export class TrackerService {
 
   getSelectedExercises(): { [key: string]: string[] } {
     return this.selectedExercises;
+  }
+
+  getExercisesData(): { [key: string]: { muscleGroup: string, exercises: any[] } } {
+    return this.exercisesData;
+  }
+
+  setExercisesData(data: { [key: string]: { muscleGroup: string, exercises: any[] } }): void {
+    this.exercisesData = data;
   }
 
   setSelectedMenuOption(option: string): void {

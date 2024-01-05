@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./tracker.component.scss'],
 })
 export class TrackerComponent implements OnInit, OnDestroy {
+
   user = this.userService.getUser();
   selectedMenuOption: string = '';
   days: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -23,17 +24,25 @@ export class TrackerComponent implements OnInit, OnDestroy {
   modalItems: string[] = [];
   modalActive: boolean = false;
 
+  exercisesData: { [key: string]: { muscleGroup: string, exercises: any[] } } = {}; 
+
+  constructor(
+    public trackerService: TrackerService,
+    public userService: UserService,
+    public route: ActivatedRoute
+  ) {}
+
   private menuOptionSubscription: Subscription | undefined;
-  constructor(public trackerService: TrackerService, public userService: UserService, public route: ActivatedRoute) {}
 
   updateProgress(day: string, item: string, event: Event): void {
     const checked = (event.target as HTMLInputElement).checked;
-  
+
     const selectedMeals: { [key: string]: boolean } = this.trackerService.getSelectedMeals()[day] || {};
     selectedMeals[item] = checked;
+
     const selectedExercises: { [key: string]: boolean } = this.trackerService.getSelectedMeals()[day] || {};
-    selectedMeals[item] = checked;
-  
+    selectedExercises[item] = checked;
+
     if (this.meals.includes(item)) {
       this.trackerService.updateProgress(day, selectedMeals, []);
       this.calculateProgress();
@@ -41,32 +50,33 @@ export class TrackerComponent implements OnInit, OnDestroy {
       this.trackerService.updateProgress(day, selectedExercises, [item]);
       this.calculateExerciseProgress();
     }
-  
+
     this.calculateOverallProgress();
   }
+
   
   calculateProgress(): void {
     const totalMeals = this.days.length * this.meals.length;
     const selectedMeals = this.trackerService.getSelectedMeals();
     const selectedMealCount = Object.values(selectedMeals)
-      .map(day => Object.values(day).filter(value => value).length)
+      .map((day) => Object.values(day).filter((value) => value).length)
       .reduce((acc, count) => acc + count, 0);
-  
+
     this.progress = (selectedMealCount / totalMeals) * 100;
     console.log('Meal Progress:', this.progress.toFixed(2) + '%');
   }
-  
+
   calculateExerciseProgress(): void {
     const totalExercises = this.days.length * this.exercises.length;
-    const selectedExercises = this.trackerService.getSelectedExercises();
+    const selectedExercises = this.trackerService.getSelectedExercises(); 
     const selectedExerciseCount = Object.values(selectedExercises)
-      .map(day => Object.values(day).filter(value => value).length)
+      .map((day) => day.length)
       .reduce((acc, count) => acc + count, 0);
-  
+
     this.exerciseProgress = (selectedExerciseCount / totalExercises) * 100;
     console.log('Exercise Progress:', this.exerciseProgress.toFixed(2) + '%');
   }
-  
+
   calculateOverallProgress(): void {
     this.overallProgress = this.progress + this.exerciseProgress;
     console.log('Overall Progress:', this.overallProgress.toFixed(2) + '%');
@@ -75,28 +85,35 @@ export class TrackerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const state = this.route.snapshot.firstChild?.data;
     this.selectedMenuOption = state?.['selectedMenuOption'];
-  
+
     this.trackerService.getSelectedMenuOption().subscribe((option: string) => {
       this.selectedMenuOption = option;
     });
+
+    this.exercisesData = this.trackerService.getExercisesData();
   }
 
   ngOnDestroy(): void {
-    // Unsubscribe from observables to avoid memory leaks
     if (this.menuOptionSubscription) {
       this.menuOptionSubscription.unsubscribe();
     }
   }
 
   toggleUserInfo(): void {
-    this.modalActive = true;
-    this.modalTitle = 'User Information';
-    this.modalItems = [
-      `Name: ${this.user.name} ${this.user.surname}`,
-      `Age: ${this.user.age}`,
-      `Weight: ${this.user.weight}`,
-      `Height: ${this.user.height}`,
-    ];
+    const user = this.userService.getUser();
+
+    if (user !== null) {
+      this.modalActive = true;
+      this.modalTitle = 'User Information';
+      this.modalItems = [
+        `Name: ${user.name} ${user.surname}`,
+        `Age: ${user.age}`,
+        `Weight: ${user.weight}`,
+        `Height: ${user.height}`,
+      ];
+    } else {
+      console.error('User is null. Unable to display user information.');
+    }
   }
 
   closeModal(): void {

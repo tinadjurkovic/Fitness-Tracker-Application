@@ -1,55 +1,68 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { StayActiveMealPlanDay } from './stay-active.model';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { TrackerService } from '../../services/tracker.service';
+import { MealPlanService } from '../../services/meal-plan.service';
+import { ExercisePlanService } from '../../services/exercise-plan.service';
+import { Router } from '@angular/router';
+import { ExercisePlan } from '../../models/exercise-plan.model';
+
 
 @Component({
   selector: 'app-stay-active',
   templateUrl: './stay-active.component.html',
   styleUrls: ['./stay-active.component.scss'],
+  providers: [MealPlanService]
 })
 export class StayActiveComponent implements OnInit {
   user: any;
-  exercisePlan: any = {};
+  exercisePlan: ExercisePlan = {
+    monday: { muscleGroup: '', exercises: [] },
+    tuesday: { muscleGroup: '', exercises: [] },
+    wednesday: { muscleGroup: '', exercises: [] },
+    thursday: { muscleGroup: '', exercises: [] },
+    friday: { muscleGroup: '', exercises: [] },
+    saturday: { muscleGroup: '', exercises: [] },
+    sunday: { restDay: true },
+  };
   showExercisePlan: boolean = false;
   showMealPlan: boolean = false;
-  mealPlan: { [key: string]: StayActiveMealPlanDay } = {};
+  mealPlan: { [key: string]: any } = {};
 
   modalTitle: string = '';
   modalItems: string[] = [];
   modalActive: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
     private userService: UserService,
-    private trackerService: TrackerService 
+    private trackerService: TrackerService,
+    private mealPlanService: MealPlanService,
+    private exercisePlanService: ExercisePlanService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
     console.log('User in Component:', this.user);
 
-    fetch('assets/exercise-plan.json')
-      .then((response) => response.json())
-      .then((data) => {
+    this.exercisePlanService.getExercisePlan().subscribe(
+      (data) => {
         this.exercisePlan = data;
         console.log('Exercise Plan:', this.exercisePlan);
-      })
-      .catch((error) => {
+      },
+      (error) => {
         console.error('Error fetching exercise plan:', error);
-      });
+      }
+    );
 
-    fetch('assets/stay-active-meal-plan.json')
-      .then((response) => response.json())
-      .then((data) => {
+    this.mealPlanService.getMealPlan('stay-active').subscribe(
+      (data) => {
+        console.log('Meal Plan:', data);
         this.mealPlan = data;
-        console.log('Meal Plan:', this.mealPlan);
-      })
-      .catch((error) => {
+      },
+      (error) => {
         console.error('Error fetching meal plan:', error);
-      });
+      }
+    );
   }
 
   toggleExercisePlan(): void {
@@ -63,8 +76,9 @@ export class StayActiveComponent implements OnInit {
   }
 
   getObjectKeys(obj: object): string[] {
-    return Object.keys(obj || {});
+    return Object.keys(obj || {}) as string[];
   }
+  
 
   toggleUserInfo(): void {
     this.openModal('User Information', [
@@ -74,8 +88,9 @@ export class StayActiveComponent implements OnInit {
       `Height: ${this.user.height}`,
     ]);
   }
+
   goToTracker(): void {
-    const selectedMenuOption = 'Stay Active';
+    const selectedMenuOption = 'Stay Active'; 
     this.trackerService.setInitialMenuOption(selectedMenuOption);
     this.router.navigate(['/tracker']);
   }
@@ -89,6 +104,13 @@ export class StayActiveComponent implements OnInit {
   closeModal(): void {
     this.modalActive = false;
   }
+
+getExercisesForDay(day: string): any[] {
+  const exercises = (this.exercisePlan as any)[day]?.exercises;
+  return Array.isArray(exercises) ? exercises : [];
 }
+
+}
+
 
 

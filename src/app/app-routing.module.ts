@@ -7,21 +7,25 @@ import { LoseWeightComponent } from './menu/lose-weight/lose-weight.component';
 import { StrengthenMusclesComponent } from './menu/strengthen-muscles/strengthen-muscles.component';
 import { StayActiveComponent } from './menu/stay-active/stay-active.component';
 import { TrackerComponent } from './tracker/tracker.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/user', pathMatch: 'full' },
   { path: 'user', component: UserComponent },
-  { path: 'menu',
-  component: MenuComponent,
-  children: [
-    { path: 'gain-weight', component: GainWeightComponent },
-    { path: 'lose-weight', component: LoseWeightComponent },
-    { path: 'strengthen-muscles', component: StrengthenMusclesComponent },
-    { path: 'stay-active', component: StayActiveComponent },
-  ],
-},
-  { path: 'tracker', component: TrackerComponent },
+  {
+    path: 'menu',
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: MenuComponent },
+      { path: 'gain-weight', component: GainWeightComponent },
+      { path: 'lose-weight', component: LoseWeightComponent },
+      { path: 'strengthen-muscles', component: StrengthenMusclesComponent },
+      { path: 'stay-active', component: StayActiveComponent },
+    ],
+  },
+  { path: 'tracker', canActivate: [AuthGuard], component: TrackerComponent },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
