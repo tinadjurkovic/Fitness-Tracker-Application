@@ -1,0 +1,47 @@
+.user-info-modal {
+    position: fixed;
+    top: 23%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+  
+    &.active {
+      display: block;
+      margin: 150px;
+    }
+  
+    .modal-content {
+      text-align: center;
+      color: #316e4d;
+  
+      h3 {
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+  
+      p {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+  
+      button {
+        background-color: #316e4d;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #19452d;
+        }
+      }
+    }
+  }
+  

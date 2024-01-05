@@ -62,7 +62,7 @@ export class TrackerComponent implements OnInit, OnDestroy {
       .map((day) => Object.values(day).filter((value) => value).length)
       .reduce((acc, count) => acc + count, 0);
 
-    this.progress = (selectedMealCount / totalMeals) * 100;
+    this.progress = (selectedMealCount / totalMeals) * 50;
     console.log('Meal Progress:', this.progress.toFixed(2) + '%');
   }
 
@@ -73,7 +73,7 @@ export class TrackerComponent implements OnInit, OnDestroy {
       .map((day) => day.length)
       .reduce((acc, count) => acc + count, 0);
 
-    this.exerciseProgress = (selectedExerciseCount / totalExercises) * 100;
+    this.exerciseProgress = (selectedExerciseCount / totalExercises) * 50;
     console.log('Exercise Progress:', this.exerciseProgress.toFixed(2) + '%');
   }
 

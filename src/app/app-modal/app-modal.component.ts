@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -6,27 +6,23 @@ import { UserService } from '../services/user.service';
   templateUrl: './app-modal.component.html',
   styleUrls: ['./app-modal.component.scss'],
 })
-export class AppModalComponent {
-  @Input() title: string = '';
-  @Input() items: string[] = [];
+export class AppModalComponent implements OnInit {
   @Input() active: boolean = false;
-  @Output() closeModalEvent = new EventEmitter<void>(); 
-
+  @Output() closeModalEvent = new EventEmitter<void>();
   user: any;
 
-  constructor (private userService: UserService) {}
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.loadUserData();
+  }
 
   onCloseModal(): void {
-    this.closeModalEvent.emit(); 
-  }
-
-  openModal(title: string, items: string[]): void {
-    this.title = title;
-    this.items = items;
-    this.active = true;
-  }
-
-  closeModal(): void {
     this.active = false;
+    this.closeModalEvent.emit();
+  }
+
+  private loadUserData(): void {
+    this.user = this.userService.getUser();
   }
 }

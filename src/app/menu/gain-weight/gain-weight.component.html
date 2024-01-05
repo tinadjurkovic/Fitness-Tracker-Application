@@ -1,13 +1,9 @@
-<div>
-  <button class="btn btn-primary" (click)="toggleUserInfo()">Show User Info</button>
+<app-modal
+[active]="modalActive"
+(closeModalEvent)="closeModal()"
+></app-modal>
 
-  <app-modal
-    [title]="modalTitle"
-    [items]="modalItems"
-    [active]="modalActive"
-    (closeModal)="closeModal()"
-  ></app-modal>
-</div>
+<button class="btn btn-primary" (click)="toggleUserInfo()">Show User Info</button>
 
 <div class="plan-section">
   <h2>Gain Weight Plan</h2>
@@ -23,9 +19,9 @@
           </li>
         </ul>
       </div>
-    
     </div>
   </div>
+
 
   <div class="plan-box" (click)="toggleMealPlan()" [class.expanded]="showMealPlan">
     <h3>Meal Plan</h3>
@@ -40,7 +36,6 @@
       </div>
     </div>
   </div>
-
 
   <button class="btn btn-primary" (click)="goToTracker()">Track My Progress</button>
 </div>

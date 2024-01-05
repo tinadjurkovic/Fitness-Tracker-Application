@@ -5,6 +5,8 @@ import { MealPlanService } from '../../services/meal-plan.service';
 import { ExercisePlanService } from '../../services/exercise-plan.service';
 import { Router } from '@angular/router';
 import { ExercisePlan } from '../../models/exercise-plan.model';
+import { AppModalComponent } from '../../app-modal/app-modal.component';
+
 
 @Component({
   selector: 'app-gain-weight',
