@@ -15,7 +15,7 @@ export class TrackerComponent implements OnInit, OnDestroy {
   selectedMenuOption: string = '';
   days: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   meals: string[] = ['Breakfast', 'Snack 1', 'Lunch', 'Snack 2', 'Dinner', 'Snack 3'];
-  exercises: string[] = ['Exercise 1', 'Exercise 2', 'Exercise 3'];
+  exercises: string[] = ['Exercise 1', 'Exercise 2', 'Exercise 3', 'Exercise 4', 'Exercise 5'];
   progress: number = 0;
   exerciseProgress: number = 0;
   overallProgress: number = 0;
@@ -36,24 +36,27 @@ export class TrackerComponent implements OnInit, OnDestroy {
 
   updateProgress(day: string, item: string, event: Event): void {
     const checked = (event.target as HTMLInputElement).checked;
-
+  
     const selectedMeals: { [key: string]: boolean } = this.trackerService.getSelectedMeals()[day] || {};
     selectedMeals[item] = checked;
-
-    const selectedExercises: { [key: string]: boolean } = this.trackerService.getSelectedMeals()[day] || {};
-    selectedExercises[item] = checked;
-
-    if (this.meals.includes(item)) {
+  
+    const selectedExercises: string[] = this.trackerService.getSelectedExercises()[day] || [];
+    if (this.exercises.includes(item)) {
+      if (checked) {
+        selectedExercises.push(item);
+      } else {
+        const index = selectedExercises.indexOf(item);
+        if (index !== -1) {
+          selectedExercises.splice(index, 1);
+        }
+      }
+      this.trackerService.updateProgress(day, selectedMeals, selectedExercises);
+      this.calculateExerciseProgress();
+    } else {
       this.trackerService.updateProgress(day, selectedMeals, []);
       this.calculateProgress();
-    } else if (this.exercises.includes(item)) {
-      this.trackerService.updateProgress(day, selectedExercises, [item]);
-      this.calculateExerciseProgress();
     }
-
-    this.calculateOverallProgress();
   }
-
   
   calculateProgress(): void {
     const totalMeals = this.days.length * this.meals.length;
@@ -61,37 +64,57 @@ export class TrackerComponent implements OnInit, OnDestroy {
     const selectedMealCount = Object.values(selectedMeals)
       .map((day) => Object.values(day).filter((value) => value).length)
       .reduce((acc, count) => acc + count, 0);
-
+  
     this.progress = (selectedMealCount / totalMeals) * 50;
     console.log('Meal Progress:', this.progress.toFixed(2) + '%');
   }
+  
+  
 
   calculateExerciseProgress(): void {
     const totalExercises = this.days.length * this.exercises.length;
     const selectedExercises = this.trackerService.getSelectedExercises(); 
+    console.log('Selected Exercises:', selectedExercises);
+  
     const selectedExerciseCount = Object.values(selectedExercises)
       .map((day) => day.length)
       .reduce((acc, count) => acc + count, 0);
-
+  
     this.exerciseProgress = (selectedExerciseCount / totalExercises) * 50;
     console.log('Exercise Progress:', this.exerciseProgress.toFixed(2) + '%');
   }
+  
 
   calculateOverallProgress(): void {
     this.overallProgress = this.progress + this.exerciseProgress;
+      this.overallProgress = Math.min(this.overallProgress, 100);
     console.log('Overall Progress:', this.overallProgress.toFixed(2) + '%');
   }
+  
 
   ngOnInit(): void {
     const state = this.route.snapshot.firstChild?.data;
     this.selectedMenuOption = state?.['selectedMenuOption'];
-
+  
     this.trackerService.getSelectedMenuOption().subscribe((option: string) => {
       this.selectedMenuOption = option;
     });
-
+  
     this.exercisesData = this.trackerService.getExercisesData();
-  }
+    console.log('Exercises Data:', this.exercisesData);
+  }  
+
+  private getDistinctExercises(): string[] {
+    const distinctExercises: Set<string> = new Set();
+    for (const day of Object.values(this.exercisesData)) {
+      if (day && day.exercises) {
+        day.exercises.forEach((exercise: any) => {
+          distinctExercises.add(exercise.name);
+        });
+      }
+    }
+    return Array.from(distinctExercises);
+  }  
 
   ngOnDestroy(): void {
     if (this.menuOptionSubscription) {

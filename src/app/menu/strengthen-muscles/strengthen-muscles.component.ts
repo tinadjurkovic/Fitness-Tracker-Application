@@ -54,7 +54,7 @@ export class StrengthenMusclesComponent implements OnInit {
       }
     );
 
-    this.mealPlanService.getMealPlan('strengthen-muscles').subscribe(
+    this.mealPlanService.getMealPlan('strenghten-muscles').subscribe(
       (data) => {
         console.log('Meal Plan:', data);
         this.mealPlan = data;
