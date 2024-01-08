@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { TrackerService } from '../../services/tracker.service';
 import { MealPlanService } from '../../services/meal-plan.service';
 import { ExercisePlanService } from '../../services/exercise-plan.service';
 import { Router } from '@angular/router';
 import { ExercisePlan } from '../../models/exercise-plan.model';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { ExercisePlan } from '../../models/exercise-plan.model';
   styleUrls: ['./stay-active.component.scss'],
   providers: [MealPlanService]
 })
-export class StayActiveComponent implements OnInit {
+export class StayActiveComponent implements OnInit, OnDestroy {
   user: any;
   exercisePlan: ExercisePlan = {
     monday: { muscleGroup: '', exercises: [] },
@@ -31,6 +32,9 @@ export class StayActiveComponent implements OnInit {
   modalTitle: string = '';
   modalItems: string[] = [];
   modalActive: boolean = false;
+
+  private exercisePlanSubscription: Subscription | undefined;
+  private mealPlanSubscription: Subscription | undefined;
 
   constructor(
     private userService: UserService,
@@ -63,6 +67,16 @@ export class StayActiveComponent implements OnInit {
         console.error('Error fetching meal plan:', error);
       }
     );
+  }
+
+
+  ngOnDestroy(): void {
+    if (this.exercisePlanSubscription) {
+      this.exercisePlanSubscription.unsubscribe();
+    }
+    if (this.mealPlanSubscription) {
+      this.mealPlanSubscription.unsubscribe();
+    }
   }
 
   toggleExercisePlan(): void {

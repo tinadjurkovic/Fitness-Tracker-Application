@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { TrackerService } from '../../services/tracker.service';
 import { MealPlanService } from '../../services/meal-plan.service';
@@ -6,6 +6,7 @@ import { ExercisePlanService } from '../../services/exercise-plan.service';
 import { Router } from '@angular/router';
 import { ExercisePlan } from '../../models/exercise-plan.model';
 import { AppModalComponent } from '../../app-modal/app-modal.component';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { AppModalComponent } from '../../app-modal/app-modal.component';
   styleUrls: ['./gain-weight.component.scss'],
   providers: [MealPlanService]
 })
-export class GainWeightComponent implements OnInit {
+export class GainWeightComponent implements OnInit, OnDestroy {
   user: any;
   exercisePlan: ExercisePlan = {
     monday: { muscleGroup: '', exercises: [] },
@@ -32,6 +33,9 @@ export class GainWeightComponent implements OnInit {
   modalTitle: string = '';
   modalItems: string[] = [];
   modalActive: boolean = false;
+
+  private exercisePlanSubscription: Subscription | undefined;
+  private mealPlanSubscription: Subscription | undefined;
 
   constructor(
     private userService: UserService,
@@ -61,6 +65,15 @@ export class GainWeightComponent implements OnInit {
         console.error('Error fetching meal plan:', error);
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    if (this.exercisePlanSubscription) {
+      this.exercisePlanSubscription.unsubscribe();
+    }
+    if (this.mealPlanSubscription) {
+      this.mealPlanSubscription.unsubscribe();
+    }
   }
 
   toggleExercisePlan(): void {
