@@ -8,7 +8,6 @@ import { ExercisePlan } from '../../models/exercise-plan.model';
 import { AppModalComponent } from '../../app-modal/app-modal.component';
 import { Subscription } from 'rxjs';
 
-
 @Component({
   selector: 'app-gain-weight',
   templateUrl: './gain-weight.component.html',
@@ -34,8 +33,8 @@ export class GainWeightComponent implements OnInit, OnDestroy {
   modalItems: string[] = [];
   modalActive: boolean = false;
 
-  private exercisePlanSubscription: Subscription | undefined;
-  private mealPlanSubscription: Subscription | undefined;
+  private exercisePlanSubscription!: Subscription;
+  private mealPlanSubscription!: Subscription;
 
   constructor(
     private userService: UserService,
@@ -47,8 +46,8 @@ export class GainWeightComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
-    
-    this.exercisePlanService.getExercisePlan().subscribe(
+
+    this.exercisePlanSubscription = this.exercisePlanService.getExercisePlan().subscribe(
       (data) => {
         this.exercisePlan = data;
       },
@@ -57,7 +56,7 @@ export class GainWeightComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.mealPlanService.getMealPlan('gain-weight').subscribe(
+    this.mealPlanSubscription = this.mealPlanService.getMealPlan('gain-weight').subscribe(
       (data) => {
         this.mealPlan = data;
       },
@@ -71,6 +70,7 @@ export class GainWeightComponent implements OnInit, OnDestroy {
     if (this.exercisePlanSubscription) {
       this.exercisePlanSubscription.unsubscribe();
     }
+
     if (this.mealPlanSubscription) {
       this.mealPlanSubscription.unsubscribe();
     }

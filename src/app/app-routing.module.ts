@@ -8,16 +8,15 @@ import { StrengthenMusclesComponent } from './menu/strengthen-muscles/strengthen
 import { StayActiveComponent } from './menu/stay-active/stay-active.component';
 import { TrackerComponent } from './tracker/tracker.component';
 import { AuthGuard } from './auth.guard';
-import { EmptyGuard } from './empty.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/user', pathMatch: 'full', canActivate: [EmptyGuard] },
+  { path: '', redirectTo: '/user', pathMatch: 'full'},
   { path: 'user', component: UserComponent },
   {
     path: 'menu',
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: MenuComponent, canActivate: [EmptyGuard] },
+      { path: '', component: MenuComponent},
       { path: 'gain-weight', component: GainWeightComponent },
       { path: 'lose-weight', component: LoseWeightComponent },
       { path: 'strengthen-muscles', component: StrengthenMusclesComponent },
@@ -25,6 +24,7 @@ const routes: Routes = [
     ],
   },
   { path: 'tracker', canActivate: [AuthGuard], component: TrackerComponent },
+  { path: '**', redirectTo: '/user', pathMatch: 'full' },
 ];
 
 

@@ -5,8 +5,8 @@ import { MealPlanService } from '../../services/meal-plan.service';
 import { ExercisePlanService } from '../../services/exercise-plan.service';
 import { Router } from '@angular/router';
 import { ExercisePlan } from '../../models/exercise-plan.model';
+import { AppModalComponent } from '../../app-modal/app-modal.component';
 import { Subscription } from 'rxjs';
-
 
 @Component({
   selector: 'app-strengthen-muscles',
@@ -33,8 +33,8 @@ export class StrengthenMusclesComponent implements OnInit, OnDestroy {
   modalItems: string[] = [];
   modalActive: boolean = false;
 
-  private exercisePlanSubscription: Subscription | undefined;
-  private mealPlanSubscription: Subscription | undefined;
+  private exercisePlanSubscription!: Subscription;
+  private mealPlanSubscription!: Subscription;
 
   constructor(
     private userService: UserService,
@@ -46,21 +46,18 @@ export class StrengthenMusclesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
-    console.log('User in Component:', this.user);
 
-    this.exercisePlanService.getExercisePlan().subscribe(
+    this.exercisePlanSubscription = this.exercisePlanService.getExercisePlan().subscribe(
       (data) => {
         this.exercisePlan = data;
-        console.log('Exercise Plan:', this.exercisePlan);
       },
       (error) => {
         console.error('Error fetching exercise plan:', error);
       }
     );
 
-    this.mealPlanService.getMealPlan('strenghten-muscles').subscribe(
+    this.mealPlanSubscription = this.mealPlanService.getMealPlan('strengthen-muscles').subscribe(
       (data) => {
-        console.log('Meal Plan:', data);
         this.mealPlan = data;
       },
       (error) => {
@@ -73,27 +70,24 @@ export class StrengthenMusclesComponent implements OnInit, OnDestroy {
     if (this.exercisePlanSubscription) {
       this.exercisePlanSubscription.unsubscribe();
     }
+
     if (this.mealPlanSubscription) {
       this.mealPlanSubscription.unsubscribe();
     }
   }
 
-
   toggleExercisePlan(): void {
     this.showExercisePlan = !this.showExercisePlan;
-    console.log('showExercisePlan:', this.showExercisePlan);
   }
 
   toggleMealPlan(): void {
     this.showMealPlan = !this.showMealPlan;
-    console.log('showMealPlan:', this.showMealPlan);
   }
 
   getObjectKeys(obj: object): string[] {
     return Object.keys(obj || {}) as string[];
   }
   
-
   toggleUserInfo(): void {
     this.openModal('User Information', [
       `Name: ${this.user.name} ${this.user.surname}`,
@@ -119,12 +113,8 @@ export class StrengthenMusclesComponent implements OnInit, OnDestroy {
     this.modalActive = false;
   }
 
-getExercisesForDay(day: string): any[] {
-  const exercises = (this.exercisePlan as any)[day]?.exercises;
-  return Array.isArray(exercises) ? exercises : [];
+  getExercisesForDay(day: string): any[] {
+    const exercises = (this.exercisePlan as any)[day]?.exercises;
+    return Array.isArray(exercises) ? exercises : [];
+  }
 }
-
-}
-
-
-
