@@ -33,9 +33,9 @@ export class StrengthenMusclesComponent implements OnInit, OnDestroy {
   modalItems: string[] = [];
   modalActive: boolean = false;
 
-  private exercisePlanSubscription!: Subscription;
-  private mealPlanSubscription!: Subscription;
-
+  private exercisePlanSubscription: Subscription | undefined;
+  private mealPlanSubscription: Subscription | undefined;
+  
   constructor(
     private userService: UserService,
     private trackerService: TrackerService,
